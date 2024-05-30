@@ -1,0 +1,29 @@
+---
+title: PrimitiveTypes
+version: jakarta
+generationType: dto
+properties:
+  intField:
+    type: int
+    description: An integer field
+  longField:
+    type: long
+    description: A long field
+  doubleField:
+    type: double
+    description: A double field
+  floatField:
+    type: float
+    description: A float field
+  booleanField:
+    type: boolean
+    description: A boolean field
+  byteField:
+    type: byte
+    description: A byte field
+  shortField:
+    type: short
+    description: A short field
+  charField:
+    type: char
+    description: A char field

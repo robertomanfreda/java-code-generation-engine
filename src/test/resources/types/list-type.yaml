@@ -1,0 +1,8 @@
+---
+title: ListType
+version: jakarta
+generationType: dto
+properties:
+  listField:
+    type: List<String>
+    description: A List of strings

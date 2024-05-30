@@ -1,0 +1,29 @@
+---
+title: WrapperTypes
+version: jakarta
+generationType: dto
+properties:
+  IntegerField:
+    type: Integer
+    description: An Integer wrapper field
+  LongField:
+    type: Long
+    description: A Long wrapper field
+  DoubleField:
+    type: Double
+    description: A Double wrapper field
+  FloatField:
+    type: Float
+    description: A Float wrapper field
+  BooleanField:
+    type: Boolean
+    description: A Boolean wrapper field
+  ByteField:
+    type: Byte
+    description: A Byte wrapper field
+  ShortField:
+    type: Short
+    description: A Short wrapper field
+  CharacterField:
+    type: Character
+    description: A Character wrapper field

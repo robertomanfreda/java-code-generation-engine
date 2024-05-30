@@ -1,0 +1,8 @@
+---
+title: MapType
+version: jakarta
+generationType: dto
+properties:
+  mapField:
+    type: Map<String, Integer>
+    description: A map with String keys and Integer values

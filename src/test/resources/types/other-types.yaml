@@ -1,0 +1,23 @@
+---
+title: WrapperTypes
+version: jakarta
+generationType: dto
+properties:
+  stringField:
+    type: String
+    description: A string field
+  dateField:
+    type: Date
+    description: A java.util.Date field
+  localDateField:
+    type: LocalDate
+    description: A java.time.LocalDate field
+  localDateTimeField:
+    type: LocalDateTime
+    description: A java.time.LocalDateTime field
+  localTimeField:
+    type: LocalTime
+    description: A java.time.LocalTime field
+  objectField:
+    type: Object
+    description: An Object field

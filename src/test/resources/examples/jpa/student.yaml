@@ -1,0 +1,100 @@
+---
+title: StudentEntity
+version: jakarta
+description: The Student entity class with various properties and JPA annotations
+generationType: entity
+jpa:
+  - Entity
+  - Table(name = "students")
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+    jpa:
+      - Id
+      - GeneratedValue(strategy = GenerationType.IDENTITY)
+  firstName:
+    type: String
+    description: The first name of the student
+    jpa:
+      - Column(name = "first_name", nullable = false, length = 50)
+  lastName:
+    type: String
+    description: The last name of the student
+    jpa:
+      - Column(name = "last_name", nullable = false, length = 50)
+  email:
+    type: String
+    description: The email address of the student
+    jpa:
+      - Column(nullable = false, unique = true)
+  password:
+    type: String
+    description: The password for the student account
+  ssn:
+    type: String
+    description: The social security number of the student
+  dateOfBirth:
+    type: Date
+    description: The date of birth of the student
+    jpa:
+      - Column(name = "date_of_birth", nullable = false)
+  gender:
+    type: String
+    description: The gender of the student
+    jpa:
+      - Column(nullable = false)
+  nationality:
+    type: String
+    description: The nationality of the student
+    jpa:
+      - Column(nullable = false)
+  address:
+    type: String
+    description: The address of the student
+    jpa:
+      - Column(nullable = false, length = 100)
+  phoneNumber:
+    type: String
+    description: The phone number of the student
+    jpa:
+      - Column(name = "phone_number", nullable = false, length = 25)
+  emergencyContact:
+    type: String
+    description: The emergency contact for the student
+    jpa:
+      - Column(name = "emergency_contact", nullable = false)
+  enrolledCourses:
+    type: List<Integer>
+    description: A list of courses the student is enrolled in
+  listListIds:
+    type: List<List<Integer>>
+    description: A list of lists of IDs
+  mapField:
+    type: Map<String, List<Integer>>
+    description: A map with String keys and List<Integer> values
+  grades:
+    type: Map<String, Double>
+    description: A map of course names to grades
+  attendanceRecord:
+    type: Map<Date, Boolean>
+    description: A record of attendance with dates and presence status
+  extracurricularActivities:
+    type: List<String>
+    description: A list of extracurricular activities the student is involved in
+  notes:
+    type: List<String>
+    description: Additional notes about the student
+  metadata:
+    type: Map<String, String>
+    description: Additional metadata for the student
+  createdAt:
+    type: Date
+    description: The creation timestamp of the student record
+    jpa:
+      - Column(name = "created_at", updatable = false)
+  updatedAt:
+    type: Date
+    description: The last updated timestamp of the student record
+    jpa:
+      - Column(name = "updated_at")

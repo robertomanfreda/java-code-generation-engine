@@ -1,0 +1,25 @@
+---
+title: Student
+version: jakarta
+description: The Student DTO class
+generationType: dto
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+    jsr303:
+      - NotNull
+  firstName:
+    type: String
+    description: The first name of the student
+    jackson:
+      - JsonProperty("user_name")
+    jsr303:
+      - NotBlank
+      - Size(min = 1, max = 50)
+  lastName:
+    type: String
+    description: The last name of the student
+    jsr303:
+      - NotBlank
+      - Size(min = 1, max = 50)

@@ -1,0 +1,115 @@
+---
+title: StudentDTOJsr303
+version: jakarta
+description: The StudentDTOJsr303 class with various properties and JSR303 annotations
+generationType: dto
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+    jsr303:
+      - NotNull
+  firstName:
+    type: String
+    description: The first name of the student
+    jsr303:
+      - NotBlank
+      - Size(min = 1, max = 50)
+  lastName:
+    type: String
+    description: The last name of the student
+    jsr303:
+      - NotBlank
+      - Size(min = 1, max = 50)
+  email:
+    type: String
+    description: The email address of the student
+    jsr303:
+      - NotBlank
+      - Email
+  password:
+    type: String
+    description: The password for the student account
+    jsr303:
+      - NotBlank
+      - Size(min = 8, max = 100)
+  ssn:
+    type: String
+    description: The social security number of the student
+    jsr303:
+      - Pattern(regexp = "^(?!000|666)[0-8][0-9]{2}-[0-9]{2}-[0-9]{4}$")
+  dateOfBirth:
+    type: Date
+    description: The date of birth of the student
+    jsr303:
+      - NotNull
+      - Past
+  gender:
+    type: String
+    description: The gender of the student
+    jsr303:
+      - NotBlank
+      - Pattern(regexp = "Male|Female|Other")
+  nationality:
+    type: String
+    description: The nationality of the student
+    jsr303:
+      - NotBlank
+  address:
+    type: String
+    description: The address of the student
+    jsr303:
+      - NotBlank
+      - Size(min = 10, max = 100)
+  phoneNumber:
+    type: String
+    description: The phone number of the student
+    jsr303:
+      - NotBlank
+      - Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$")
+  emergencyContact:
+    type: String
+    description: The emergency contact for the student
+    jsr303:
+      - NotBlank
+  enrolledCourses:
+    type: List<Integer>
+    description: A list of courses the student is enrolled in
+    jsr303:
+      - NotNull
+      - Size(min = 1)
+  listListIds:
+    type: List<List<Integer>>
+    description: A list of lists of IDs
+  mapField:
+    type: Map<String, List<Integer>>
+    description: A map with String keys and List<Integer> values
+  grades:
+    type: Map<String, Double>
+    description: A map of course names to grades
+    jsr303:
+      - NotNull
+  attendanceRecord:
+    type: Map<Date, Boolean>
+    description: A record of attendance with dates and presence status
+  extracurricularActivities:
+    type: List<String>
+    description: A list of extracurricular activities the student is involved in
+    jsr303:
+      - Size(min = 0, max = 10)
+  notes:
+    type: List<String>
+    description: Additional notes about the student
+    jsr303:
+      - Size(max = 500)
+  metadata:
+    type: Map<String, String>
+    description: Additional metadata for the student
+  createdAt:
+    type: Date
+    description: The creation timestamp of the student record
+  updatedAt:
+    type: Date
+    description: The last updated timestamp of the student record
+    jsr303:
+      - PastOrPresent

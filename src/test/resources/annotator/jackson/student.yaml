@@ -1,0 +1,41 @@
+---
+title: Student
+version: jakarta
+description: The AnnotatorTestStudent DTO class with various properties and annotations to test annotators
+generationType: dto
+jackson:
+  - JsonIgnoreProperties({"ssn", "password"})
+  - JsonInclude(JsonInclude.Include.NON_NULL)
+  - JsonPropertyOrder({"id", "name", "email", "createdAt", "updatedAt"})
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+  name:
+    type: String
+    description: The name of the student
+    jackson:
+      - JsonProperty("full_name")
+  email:
+    type: String
+    description: The email address of the student
+  password:
+    type: String
+    description: The password for the student account
+    jackson:
+      - JsonIgnore
+  ssn:
+    type: String
+    description: The social security number of the student
+    jackson:
+      - JsonIgnore
+  createdAt:
+    type: Date
+    description: The creation timestamp of the student record
+    jackson:
+      - JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+  updatedAt:
+    type: Date
+    description: The last updated timestamp of the student record
+    jackson:
+      - JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")

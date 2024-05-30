@@ -1,0 +1,44 @@
+---
+title: Student
+version: jakarta
+description: The AnnotatorTestStudent entity class with various properties and annotations to test annotators
+generationType: dto
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+    jsr303:
+      - NotNull
+  name:
+    type: String
+    description: The name of the student
+    jsr303:
+      - NotBlank
+      - Size(min = 1, max = 100)
+  email:
+    type: String
+    description: The email address of the student
+    jsr303:
+      - NotBlank
+      - Email
+  password:
+    type: String
+    description: The password for the student account
+    jsr303:
+      - NotBlank
+      - Size(min = 8, max = 100)
+  ssn:
+    type: String
+    description: The social security number of the student
+    jsr303:
+      - Pattern(regexp = "^(?!000|666)[0-8][0-9]{2}-[0-9]{2}-[0-9]{4}$")
+  createdAt:
+    type: Date
+    description: The creation timestamp of the student record
+    jsr303:
+      - PastOrPresent
+  updatedAt:
+    type: Date
+    description: The last updated timestamp of the student record
+    jsr303:
+      - PastOrPresent

@@ -1,0 +1,8 @@
+---
+title: SetType
+version: jakarta
+generationType: dto
+properties:
+  listField:
+    type: Set<String>
+    description: A Set of strings

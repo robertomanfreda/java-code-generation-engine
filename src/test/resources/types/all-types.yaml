@@ -1,0 +1,99 @@
+---
+title: AllTypes
+version: jakarta
+generationType: dto
+properties:
+  # Primitive Types
+  intFieldP:
+    type: int
+    description: An int field
+  longFieldP:
+    type: long
+    description: A long field
+  doubleFieldP:
+    type: double
+    description: A double field
+  floatFieldP:
+    type: float
+    description: A float field
+  booleanFieldP:
+    type: boolean
+    description: A boolean field
+  byteFieldP:
+    type: byte
+    description: A byte field
+  shortFieldP:
+    type: short
+    description: A short field
+  charFieldP:
+    type: char
+    description: A char field
+
+  # Wrapper Types
+  IntegerField:
+    type: Integer
+    description: An Integer wrapper field
+  LongField:
+    type: Long
+    description: A Long wrapper field
+  DoubleField:
+    type: Double
+    description: A Double wrapper field
+  FloatField:
+    type: Float
+    description: A Float wrapper field
+  BooleanField:
+    type: Boolean
+    description: A Boolean wrapper field
+  ByteField:
+    type: Byte
+    description: A Byte wrapper field
+  ShortField:
+    type: Short
+    description: A Short wrapper field
+  CharacterField:
+    type: Character
+    description: A Character wrapper field
+
+  # Other Types
+  stringField:
+    type: String
+    description: A string field
+  dateField:
+    type: Date
+    description: A java.util.Date field
+  localDateField:
+    type: LocalDate
+    description: A java.time.LocalDate field
+  localDateTimeField:
+    type: LocalDateTime
+    description: A java.time.LocalDateTime field
+  localTimeField:
+    type: LocalTime
+    description: A java.time.LocalTime field
+  objectField:
+    type: Object
+    description: An Object field
+
+  # List Type
+  listField:
+    type: List
+    typeImplementation: ArrayList
+    itemsType: String
+    description: A list of strings
+
+  # Set Type
+  setField:
+    type: Set
+    typeImplementation: HashSet
+    itemsType: String
+    description: A set of strings
+
+  # Map Type
+  mapField:
+    type: Map
+    typeImplementation: HashMap
+    itemsType:
+      keyType: String
+      valueType: Integer
+    description: A map with String keys and Integer values

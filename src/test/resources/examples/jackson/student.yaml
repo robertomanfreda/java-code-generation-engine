@@ -1,0 +1,86 @@
+---
+title: StudentDTOJackson
+version: jakarta
+description: The StudentDTOJackson class with various properties and Jackson annotations
+generationType: dto
+jackson:
+  - JsonIgnoreProperties({"password", "name", "foo", "ssn"})
+  - JsonInclude(JsonInclude.Include.NON_NULL)
+  - JsonPropertyOrder({"id", "firstName", "lastName", "email", "dateOfBirth", "enrolledCourses", "address", "phoneNumber", "gender", "nationality", "emergencyContact", "listListIds", "mapField"})
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+  firstName:
+    type: String
+    description: The first name of the student
+    jackson:
+      - JsonProperty("user_name")
+  lastName:
+    type: String
+    description: The last name of the student
+  email:
+    type: String
+    description: The email address of the student
+  password:
+    type: String
+    description: The password for the student account
+    jackson:
+      - JsonIgnore
+  ssn:
+    type: String
+    description: The social security number of the student
+    jackson:
+      - JsonIgnore
+  dateOfBirth:
+    type: Date
+    description: The date of birth of the student
+  gender:
+    type: String
+    description: The gender of the student
+  nationality:
+    type: String
+    description: The nationality of the student
+  address:
+    type: String
+    description: The address of the student
+  phoneNumber:
+    type: String
+    description: The phone number of the student
+  emergencyContact:
+    type: String
+    description: The emergency contact for the student
+  enrolledCourses:
+    type: List<Integer>
+    description: A list of courses the student is enrolled in
+  listListIds:
+    type: List<List<Integer>>
+    description: A list of lists of IDs
+  mapField:
+    type: Map<String, List<Integer>>
+    description: A map with String keys and List<Integer> values
+  grades:
+    type: Map<String, Double>
+    description: A map of course names to grades
+  attendanceRecord:
+    type: Map<Date, Boolean>
+    description: A record of attendance with dates and presence status
+  extracurricularActivities:
+    type: List<String>
+    description: A list of extracurricular activities the student is involved in
+  notes:
+    type: List<String>
+    description: Additional notes about the student
+  metadata:
+    type: Map<String, String>
+    description: Additional metadata for the student
+  createdAt:
+    type: Date
+    description: The creation timestamp of the student record
+    jackson:
+      - JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+  updatedAt:
+    type: Date
+    description: The last updated timestamp of the student record
+    jackson:
+      - JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
