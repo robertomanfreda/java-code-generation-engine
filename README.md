@@ -1074,4 +1074,4 @@ details.
 ## Repository
 
 The source code for JCGE can be found at:
-[GitHub Repository](https://github.com/robertomanfreda/java-code-generation-engine)]
+[GitHub Repository](https://github.com/robertomanfreda/java-code-generation-engine)
