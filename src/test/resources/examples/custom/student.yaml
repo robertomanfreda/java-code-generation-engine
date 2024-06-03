@@ -1,0 +1,19 @@
+---
+title: StudentCustom
+version: jakarta
+description: The StudentCustom class with a field including a Custom type
+generationType: dto
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+  firstName:
+    type: String
+    description: The first name of the student
+  lastName:
+    type: String
+    description: The last name of the student
+  testClass:
+    type: TestClass
+    package: io.github.robertomanfreda.jcge.utils
+    description: A Custom TestClass type

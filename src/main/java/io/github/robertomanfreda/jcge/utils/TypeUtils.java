@@ -18,13 +18,25 @@ import java.util.Set;
 public class TypeUtils {
 
     public static TypeName mapType(JsonNode fieldProps) {
-        JsonNode jsonNodeType = fieldProps.get("type");
+        JsonNode customNodeType = fieldProps.get("package");
 
+        JsonNode jsonNodeType = fieldProps.get("type");
         String fieldType = jsonNodeType != null
                 ? jsonNodeType.asText()
                 : fieldProps.asText();
 
         log.debug("Mapping field type for {}", fieldProps);
+
+        if (null != customNodeType) {
+            log.debug("Mapping field type for custom node type {}", customNodeType);
+            String customPackage = customNodeType.asText();
+
+            if (null != customPackage) {
+                return mapCustomType(customPackage, fieldType);
+            } else {
+                throw new RuntimeException("Custom node type must be set");
+            }
+        }
 
         if (fieldType.startsWith("List")) {
             return mapParameterizedType(fieldType, List.class);
@@ -35,6 +47,19 @@ public class TypeUtils {
         } else {
             return mapSimpleType(fieldType);
         }
+    }
+
+    private static TypeName mapCustomType(String customPackage, String fieldType) {
+        ClassName className = ClassName.get(customPackage, fieldType);
+
+        try {
+            Class.forName(className.canonicalName());
+        } catch (ClassNotFoundException e) {
+            log.error("Could not find class {}", className.canonicalName(), e);
+            throw new RuntimeException(e);
+        }
+
+        return className;
     }
 
     private static TypeName mapSimpleType(String fieldType) {

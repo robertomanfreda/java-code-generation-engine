@@ -27,10 +27,21 @@ reducing time and coding errors.
 
 ## Features
 
-- Automatic generation of Entity or DTO classes from YAML/JSON files.
-- Automatic generation of: Fields, NoArgsConstructor, Getters, Setters, Builder, Equals, HashCode, ToString
-- Automatic generation of: JPA, Jackson, JSR-303 annotations.
+- Automatic generation of Entity or DTO classes from YAML/JSON files including:
+  - Fields
+  - NoArgsConstructor
+  - Getters
+  - Setters
+  - Builder
+  - Equals
+  - HashCode
+  - ToString
+  - Class Level Annotations
+  - Field Level Annotations
+  - Class Level Description
+  - Field Level Description
 - Support for all Java types
+- Support for Custom Types
 
 ---
 
@@ -155,7 +166,32 @@ or entire remote folders:
 
 ## YAML File Examples:
 
-- A DTO with Jackson annotations using jakarta imports
+- A DTO with a field including a Custom type (TestClass), using jakarta imports (you need to specify the `package` and
+  it must be in the classpath):
+
+```yaml
+---
+title: StudentCustom
+version: jakarta
+description: The StudentCustom class with a field including a Custom type
+generationType: dto
+properties:
+  id:
+    type: Integer
+    description: The unique identifier for a student
+  firstName:
+    type: String
+    description: The first name of the student
+  lastName:
+    type: String
+    description: The last name of the student
+  testClass:
+    type: TestClass
+    package: io.github.robertomanfreda.jcge.utils
+    description: A Custom TestClass type
+```
+
+- A DTO with Jackson annotations, using jakarta imports:
 
 ```yaml
 ---
@@ -246,7 +282,7 @@ properties:
       - JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
 ```
 
-- A DTO with JSR-303 annotations using javax imports
+- A DTO with JSR-303 annotations, using javax imports:
 
 ```yaml
 ---
@@ -366,7 +402,7 @@ properties:
       - PastOrPresent
 ```
 
-- An entity with JPA annotations using jakarta imports
+- An entity with JPA annotations, using jakarta imports:
 
 ```yaml
 ---
@@ -487,7 +523,17 @@ or using the short form
 mvn jcge:generate
 ```
 
-The plugin will process the files and generate the classes in the target/generated-sources/jcge folder.
+The plugin will process the files and generate the classes. If it encounters any errors during generation, it will
+generally throw a `RuntimeException`. In a future release, we will provide the option to configure whether the exception
+should be blocking during compilation or not.
+
+At the end of the generation process, the generated class will be located in one of the following directories,
+depending on the value of generationType:
+
+- If `generationType` is set to `dto`, the class will be found in `target/generated-sources/jcge/dto` with the
+  package `jcge.dto`.
+- If `generationType` is set to `entity`, the class will be found in `target/generated-sources/jcge/entity` with the
+  package `jcge.entity`.
 
 Here is an example of a class generated from the JPA StudentEntity file above:
 
@@ -748,185 +794,9 @@ public class StudentEntity implements Serializable {
                 "updatedAt='" + updatedAt + '\'' + "}";
     }
 
-    public Integer getId() {
-        return id;
-    }
+  // Getters (Omitted for brevity)
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getEmergencyContact() {
-        return emergencyContact;
-    }
-
-    public List<Integer> getEnrolledCourses() {
-        return enrolledCourses;
-    }
-
-    public List<List<Integer>> getListListIds() {
-        return listListIds;
-    }
-
-    public Map<String, List<Integer>> getMapField() {
-        return mapField;
-    }
-
-    public Map<String, Double> getGrades() {
-        return grades;
-    }
-
-    public Map<Date, Boolean> getAttendanceRecord() {
-        return attendanceRecord;
-    }
-
-    public List<String> getExtracurricularActivities() {
-        return extracurricularActivities;
-    }
-
-    public List<String> getNotes() {
-        return notes;
-    }
-
-    public Map<String, String> getMetadata() {
-        return metadata;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setEmergencyContact(String emergencyContact) {
-        this.emergencyContact = emergencyContact;
-    }
-
-    public void setEnrolledCourses(List<Integer> enrolledCourses) {
-        this.enrolledCourses = enrolledCourses;
-    }
-
-    public void setListListIds(List<List<Integer>> listListIds) {
-        this.listListIds = listListIds;
-    }
-
-    public void setMapField(Map<String, List<Integer>> mapField) {
-        this.mapField = mapField;
-    }
-
-    public void setGrades(Map<String, Double> grades) {
-        this.grades = grades;
-    }
-
-    public void setAttendanceRecord(Map<Date, Boolean> attendanceRecord) {
-        this.attendanceRecord = attendanceRecord;
-    }
-
-    public void setExtracurricularActivities(List<String> extracurricularActivities) {
-        this.extracurricularActivities = extracurricularActivities;
-    }
-
-    public void setNotes(List<String> notes) {
-        this.notes = notes;
-    }
-
-    public void setMetadata(Map<String, String> metadata) {
-        this.metadata = metadata;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public static Builder builder() {
-        return new Builder();
-    }
+  // Setters (Omitted for brevity)
 
     public static class Builder {
         private Integer id;
@@ -1153,7 +1023,6 @@ the [Generating Classes](#generating-classes) section.
 ## Future Implementations
 
 - Automated release via GitHub CI/CD
-- Support for custom types: Allow the definition and usage of custom types in YAML/JSON files.
 - Support for authentication for remote downloads: Implement authentication mechanisms for downloading protected remote
   files.
 - Support for MapStruct: Automate the generation of mappers for converting entities to DTOs and vice versa using
