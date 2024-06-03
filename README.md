@@ -56,7 +56,7 @@ To include JCGE in your Maven project, add the following plugin section to your 
     <plugin>
       <groupId>io.github.robertomanfreda</groupId>
       <artifactId>jcge-maven-plugin</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </plugin>
   </plugins>
 </build>
@@ -514,7 +514,7 @@ properties:
 To generate classes from the YAML files you can run the following Maven command:
 
 ```sh
-mvn clean com.robertomanfreda:jcge-maven-plugin:1.0.0-SNAPSHOT:generate
+mvn clean com.robertomanfreda:jcge-maven-plugin:1.0.1-SNAPSHOT:generate
 ```
 
 or using the short form
