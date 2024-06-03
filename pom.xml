@@ -10,7 +10,7 @@
     <url>https://github.com/robertomanfreda/java-code-generation-engine</url>
     <groupId>io.github.robertomanfreda</groupId>
     <artifactId>jcge-maven-plugin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <developers>
@@ -51,8 +51,10 @@
 
         <!-- Plugins -->
         <jcge.maven-compiler-plugin.version>3.13.0</jcge.maven-compiler-plugin.version>
+        <jcge.maven-plugin-plugin.version>3.13.1</jcge.maven-plugin-plugin.version>
         <jcge.build-helper-maven-plugin.version>3.6.0</jcge.build-helper-maven-plugin.version>
         <jcge.maven-surefire-plugin>3.2.5</jcge.maven-surefire-plugin>
+        <jcge.versions-maven-plugin.version>2.16.2</jcge.versions-maven-plugin.version>
 
         <!-- Versioning -->
         <jcge.javapoet.version>1.13.0</jcge.javapoet.version>
@@ -68,7 +70,9 @@
         <jcge.junit-jupiter.version>5.11.0-M2</jcge.junit-jupiter.version>
         <jcge.InMemoryJavaCompiler.version>1.3.0</jcge.InMemoryJavaCompiler.version>
         <jcge.mave-plugin-api.version>3.9.7</jcge.mave-plugin-api.version>
-        <jcge.mave-plugin-annotations.version>3.13.0</jcge.mave-plugin-annotations.version>
+        <jcge.mave-plugin-annotations.version>
+            ${jcge.maven-plugin-plugin.version}
+        </jcge.mave-plugin-annotations.version>
     </properties>
 
     <dependencies>
@@ -184,7 +188,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>${jcge.maven-compiler-plugin.version}</version>
+                <version>${jcge.maven-plugin-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>default-descriptor</id>
@@ -224,6 +228,14 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${jcge.versions-maven-plugin.version}</version>
+                <configuration>
+                    <rulesUri>file://${project.basedir}/version-rules.xml</rulesUri>
                 </configuration>
             </plugin>
         </plugins>
